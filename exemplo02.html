@@ -39,6 +39,10 @@
         mover : function(dt){
         this.x = this.x + this.vx*dt;  
         this.y = this.y + this.vy*dt;
+        },
+        perseguir : function(alvo){
+            this.vx = 40*Math.sign(alvo.x - this.x);
+            this.vy = 40*Math.sign(alvo.y - this.y);
         }    
     };
 
@@ -87,7 +91,9 @@
         ctx.fillStyle = "black";
         ctx.fillText(t, 10,10);
         ctx.fillText(dt, 10,20);
-        
+
+        pc2.perseguir(pc);
+
         pc.mover(dt);
         pc2.mover(dt);
 
