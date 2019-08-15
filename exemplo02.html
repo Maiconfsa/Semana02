@@ -16,7 +16,6 @@
     var dt = 0;
     var anterior = 0;
     var pc = {};
-
     pc.w = 30;
     pc.vx = 50;
     pc.vy = 0;
@@ -29,6 +28,20 @@
     }
 
     pc.desenhar = desenhaPC;
+
+    var pc2 = {
+        x : 50,
+        y : 150,
+        w : 50,
+        vx : 0,
+        vy : 0,
+        desenhar : desenhaPC,
+        mover : function(dt){
+        this.x = this.x + this.vx*dt;  
+        this.y = this.y + this.vy*dt;
+        }    
+    };
+
 
     var ctx = canvas.getContext("2d");
 
@@ -76,8 +89,11 @@
         ctx.fillText(dt, 10,20);
         
         pc.mover(dt);
+        pc2.mover(dt);
 
         pc.desenhar(ctx);
+        pc2.desenhar(ctx);
+
         desenhaPortais();
         anterior = t;
         if(pc.x >= canvas.width){
