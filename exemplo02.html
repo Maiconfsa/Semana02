@@ -22,10 +22,13 @@
     pc.vy = 0;
     pc.x = 100;
     pc.y = 100;
+
     pc.mover = function(dt){
         this.x = this.x + this.vx*dt;  
         this.y = this.y + this.vy*dt;
     }
+
+    pc.desenhar = desenhaPC;
 
     var ctx = canvas.getContext("2d");
 
@@ -59,11 +62,11 @@
         ctx.fillStyle = "orange";
         ctx.fillRect(0,95,5,40); 
     }
-    function desenhaPC(x, y){
+    function desenhaPC(ctx){
         ctx.fillStyle = "lightblue";
-        ctx.fillRect(x, y, pc.w, pc.w);
+        ctx.fillRect(this.x, this.y, this.w, this.w);
         ctx.strokeStyle = "black";
-        ctx.strokeRect(x, y, pc.w, pc.w);
+        ctx.strokeRect(this.x, this.y, this.w, this.w);
     }
     function passo(t){
         dt = (t - anterior)/1000;
@@ -74,7 +77,7 @@
         
         pc.mover(dt);
 
-        desenhaPC(pc.x,pc.y);
+        pc.desenhar(ctx);
         desenhaPortais();
         anterior = t;
         if(pc.x >= canvas.width){
