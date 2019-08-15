@@ -22,6 +22,10 @@
     pc.vy = 0;
     pc.x = 100;
     pc.y = 100;
+    pc.mover = function(dt){
+        this.x = this.x + this.vx*dt;  
+        this.y = this.y + this.vy*dt;
+    }
 
     var ctx = canvas.getContext("2d");
 
@@ -68,8 +72,8 @@
         ctx.fillText(t, 10,10);
         ctx.fillText(dt, 10,20);
         
-        pc.x = pc.x + pc.vx*dt;
-        pc.y = pc.y + pc.vy*dt;
+        pc.mover(dt);
+
         desenhaPC(pc.x,pc.y);
         desenhaPortais();
         anterior = t;
